@@ -1,0 +1,9 @@
+1. The User model extended:
+   a. a birthday field of type date
+   b. a random number field of type integer that is assigned a value from 1-100 on creation
+
+2. Views created for: list of all users, viewing, adding, editing and deleting a single user
+
+3. Two template tags created: display Eligible and BizzFuzz field
+
+4. Excel download not working properly

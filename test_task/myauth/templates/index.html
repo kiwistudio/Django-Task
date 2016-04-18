@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    </br><a class="btn btn-primary" href="{{ PORTAL_URL }}{% url "user_add" %}">
+        User add
+    </a>
+    
+    
+    <!--Start User Listing -->  
+    {% if user %}
+      <table class="table table-hover table striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Birthday</th>
+            <th>Eligible</th>
+            <th>Random Number</th>
+            <th>BizzFuzz</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for u in user %}
+          <tr>
+            <td>{{ u.username }} </td>
+            <td>{{ u.birthday }}</td>
+            <td>{% if u.birthday < eligible %}allowed
+                {% else %}blocked
+                {% endif %}
+            </td>
+            <td>{{ u.random_number }}</td>
+            <td>{% if u.random_number|divisibleby:3 %}Bizz
+                {% elif u.random_number|divisibleby:5 %}Fuzz
+                {% elif u.random_number|divisibleby:5 and u.random_number|divisibleby:3 %}BizzFuzz
+                {% else %}{{ u.random_number }}
+                {% endif %}
+            </td>
+            <td>   
+               <div class="btn-group"> 
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                    <li><a href="{{ PORTAL_URL }}{% url "user_edit" u.id %}" class="user-edit-form-link">Edit</a></li>
+                    <li><a href="{{ PORTAL_URL }}{% url "user_delete" u.id %}">Delete</a></li>
+                    </ul>
+                </div>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+      <a href="{% url "export" %}">Export to Excel !</a>
+
+    {% else %}
+      </br><p>The database is empty, please, press User add button</p>
+    {% endif %}
+
+
+    {% endblock content %}

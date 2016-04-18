@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}User delete{% endblock meta_title %}
+{% block title %}User delete{% endblock title %}
+
+{% block content %}
+</br>
+<form action="{% url "user_delete" object.id %}" method="post">
+	{% csrf_token %}
+	<p>you really want to delete an user"{{ object }}"?</p>
+	<input type="submit" value="delete" name="delete_button" class="btn btn-danger" />
+	<button type="button" name="cancel_button" onclick="window.history.back();"
+              class="btn btn-link">Cancel</button>
+</form>
+{% endblock content %}
+

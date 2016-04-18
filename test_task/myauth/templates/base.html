@@ -1,0 +1,60 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test task - {% block meta_title %}{% endblock meta_title %}</title>
+  <meta name="description" value="Test task">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!--Include Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+  <!--Start Container-->
+  <div class="container">
+
+
+	<!--Start mainpage content-->
+	<div class="row" id="content-columns">
+	<div class="col-xs-12" id="content-column">
+
+	  <!--Status Massage-->
+	  
+	  {% block status_message %}
+	  {% if request.GET.status_message %}
+	  	</br>
+	  	<div class="alert alert-success" role="alert">
+	  	  {{ request.GET.status_message }}
+	  	</div>
+	  {% endif %}
+	  {% endblock %}
+
+	  {% block content %}{% endblock content %}
+				
+	  </div>
+	</div>
+	<!--End mainpage-->
+
+	<!--Start footer-->
+	{% block footer %}
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+  	  <div class="container" align="center" style="margin-top:15px">
+ 		2016 Test Task
+  	  </div>
+	</nav>
+	{% endblock footer %}
+	<!--End footer-->
+
+  </div>
+  <!--End container-->
+
+ <!--java script section-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>
